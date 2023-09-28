@@ -1,0 +1,8 @@
+export {default as Navbar} from './navbar'
+export {default as Main} from './main/main'
+export {default as Usefull} from './usefull/usefull'
+export {default as TraderInfo} from './traderInfo/traderInfo'
+export {default as Competition} from './competition/competition'
+export {default as Price} from './price'
+export {default as Contact} from './contact/contact'
+export {default as Footer} from './footer/footer'
