@@ -26,6 +26,18 @@
   font-family: 'Mezzard';
 }
 
+.btn {
+    border-radius: 15px;
+    background: #0085FF;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
+.inp {
+    border-radius: 15px;
+    background: #0D0F18;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
 *{
   margin: 0;
   padding: 0;
