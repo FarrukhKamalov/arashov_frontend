@@ -24,15 +24,16 @@ const Settings = () => {
     }, [])
 
     const onChangeUser = () => {
-        axios.patch("https://arashovplatform.onrender.com/api/v1/student/me/edit", {
+        axios.patch("https://arashovplatform.onrender.com/api/v1/student/me/edit", 
+        {
+            fullName: name,
+            phone: phone,
+            email: email
+        },
+        {
             headers: {
                 token: localStorage.getItem('token')
-            },
-            body: {
-                fullName: name,
-                phone: phone,
-                email: email
-            }
+            }            
         }).then(res => {
             router.push("/profile/me")
         })

@@ -23,37 +23,34 @@ function App() {
   }, [router])
 
   const onRegister = async (data) => {
-    if (data.email.length && data.phone.length && data.password.length) {
-      const obj = {
-        email: data.email,
-        phone: data.phone,
-        password: data.password
-      }
-  
-      axios.post("https://arashovplatform.onrender.com/api/v1/auth/register", obj).then(res => router.push("/profile/login"))
+    if (data.email && data.phone && data.password) {
+        router.push(`/profile/verification?email=${data.email}&phone=${data.phone}&a=${data.password}`)        
+    } else {
+        alert("Avval To'ldiring!!!")
     }
   };
 
-  const onLogin = async (data) => {
-    if (data.email.length && data.password.length) {
-      const obj = {
-        email: data.email,
-        password: data.password
-      }
-  
-      axios.post("https://arashovplatform.onrender.com/api/v1/auth/login", obj).then(res => {
-        if (res.data.token) {
-          localStorage.setItem('token', res.data.token)
-          router.push("/profile/me")
-        } else {
-          setStatus("Xatolik, bunday foydalanuvchi mavjud emas")
-          setTimeout(() => {
-            setStatus("")
-          }, 5000)
+    const onLogin = async (data) => {
+        if (data.email.length && data.password.length) {
+            const obj = {
+                email: data.email,
+                password: data.password
+            }
+        
+            axios.post("https://arashovplatform.onrender.com/api/v1/auth/login", obj).then(res => {
+                if (res.data.token) {
+                    localStorage.setItem('token', res.data.token)
+                        router.push("/profile/me")
+                    } else {
+                        setStatus("Xatolik, bunday foydalanuvchi mavjud emas")
+                        setTimeout(() => {
+                            setStatus("")
+                        }, 5000)
+                    }
+                }
+            )
         }
-      })
-    }
-  };
+    };
 
   const inputDesign = "px-6 ml-1 w-full py-2 bg-[#000C2C] text-gray-100 outline-0 rounded-r-xl"
 
