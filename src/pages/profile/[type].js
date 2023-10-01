@@ -62,7 +62,7 @@ function App() {
         <title>Arashov - {loginOrRegister ? "Ro'yhatdan o'ting" : "Tizimga kiring"}</title>
       </Head>
       <div className="flex-1 boxshadowed2 max-w-2xl h-[520px] py-4 px-10 sm:px-32 relative pb-32 shadow-xl border-4 border-[#002C72] rounded-2xl">
-        <div className="flex flex-col items-start mt-14 gap-1 mb-6">
+        <div className="flex flex-col items-start mt-10 gap-1 mb-6">
           <p className="uppercase text-gray-200 text-basic sm:text-2xl mezzardBold text-center">Kurslardan birini xarid qilish uchun {loginOrRegister ? "Ro'yhatdan o'ting" : "Tizimga kiring"}</p>
         </div>
         {loginOrRegister 
@@ -70,18 +70,22 @@ function App() {
         <>
           <form className="flex flex-col items-center" onSubmit={handleSubmit(onRegister)}>
             <div className="w-full">
-              <div className="flex flex-col items-center gap-5">
+              <div className="flex flex-col items-center gap-3">
+                <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
+                  <i className="fa-solid fa-user text-xl"></i>
+                  <input autoComplete="off" className={inputDesign} type="email" {...register("name")} name="text" placeholder="Ism Familiya" />
+                </div>
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-envelope text-xl"></i>
                   <input autoComplete="off" className={inputDesign} type="email" {...register("email")} name="email" placeholder="Email" />
                 </div>
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-phone"></i>
-                  <input autoComplete="off" className={inputDesign} type="tel" {...register("phone")} name="phone" placeholder="Phone" />
+                  <input autoComplete="off" className={inputDesign} type="tel" {...register("phone")} name="phone" placeholder="Telefon raqam" />
                 </div>
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-key"></i>
-                  <input autoComplete="off" className={inputDesign} type="password" {...register("password")} name="password" placeholder="Password" />
+                  <input autoComplete="off" className={inputDesign} type="password" {...register("password")} name="password" placeholder="Parol" />
                 </div>
               </div>
 
