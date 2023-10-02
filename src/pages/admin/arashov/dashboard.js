@@ -40,27 +40,29 @@ const Dashboard = () => {
     return (  
         <div className="mx-auto absolute top-0 right-0 z-50 w-full h-full flex flex-col md:flex-row items-center md:items-start justify-start h-screen md:max-h-screen">
         <Head>
-            <title>Arashov - Dashboard</title>
+            <title>Arashov - Adminpanel</title>
         </Head>
             <aside className="px-6 w-full h-full md:w-72 flex flex-col items-center py-6 bg-gray-800">
                 <Link href="/">
                     <Image src={logo} alt="logo" className="w-40 cursor-pointer hover:-rotate-2 transition-all" />
                 </Link>
                 <div className="mt-6 flex flex-col items-start gap-2 w-full">
-                    <p onClick={() => setTabs("students")} className={ `${ tab == "students" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> STUDENTS</p>
-                    <p onClick={() => setTabs("courses")} className={ `${ tab == "courses" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-film"></i> COURSES</p>
-                    <p onClick={() => setTabs("posts")} className={ `${ tab == "posts" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-list"></i> POSTS</p>
+                    <p onClick={() => setTabs("students")} className={ `${ tab == "students" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> O'quvchilar</p>
+                    <p onClick={() => setTabs("courses")} className={ `${ tab == "courses" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-film"></i> Kurslar</p>
+                    <p onClick={() => setTabs("posts")} className={ `${ tab == "posts" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-list"></i> Postlar</p>
                     
                     <div className="mt-2 w-full flex flex-col gap-2">
-                        <Link href={`./add`} className={ `bg-gray-600 flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-add"></i>Add course</Link>
-                        <Link href={`./addpost`} className={ `bg-gray-600 flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-add"></i>Add post</Link>
+                        <Link href={`./add`} className={ `bg-gray-600 flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-add"></i>Kurs qo'shish</Link>
+                        <Link href={`./addpost`} className={ `bg-gray-600 flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-add"></i>Post yozish</Link>
                     </div>
-
+ 
                 </div>
             </aside>
             <div className="px-4 py-6 min-h-full w-full bg-[#151A20] max-h-screen overflow-y-auto">
-                <div className="py-4 flex items-center justify-between">
-                    <p className="text-3xl font-semibold">{tab.toUpperCase()}</p>
+                <div className="py-4 flex items-center">
+                    <p className="text-3xl relative my-1 font-semibold">{tab == "students" && "O'QUVCHILAR"}</p>
+                    <p className="text-3xl relative my-1 font-semibold">{tab == "posts" && "POSTLAR"}</p>
+                    <p className="text-3xl relative my-1 font-semibold">{tab == "courses" && "KURSLAR"}</p>
                 </div>
                 <div className="flex flex-col items-start">
                     <div className="w-full flex flex-col max-h-full overflow-y-auto">                        
@@ -72,8 +74,8 @@ const Dashboard = () => {
                                 <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
                                 <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
                                 <div className="w-4/12 flex items-center justify-end gap-4">
-                                    <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 bg-yellow-500 px-2 py-0.5 text-sm rounded-md">EDIT
-                                        <i className="bg-yellow-600 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                    <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                        <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                     </Link>
                                     <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
                                 </div>
@@ -86,8 +88,8 @@ const Dashboard = () => {
                                     <div className="w-4/12 text-sm truncate">{i.videoTitle}</div>
                                     <div className="w-4/12 text-sm truncate">{i.videoLink}</div>
                                     <div className="w-4/12 flex items-center justify-end gap-4">
-                                        <Link href={`./add/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 bg-yellow-500 px-2 py-0.5 text-sm rounded-md">EDIT
-                                            <i className="bg-yellow-600 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                        <Link href={`./add/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                         </Link>
                                         <i onClick={() => deleteing(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
                                     </div>
@@ -100,8 +102,8 @@ const Dashboard = () => {
                                     <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "120px", height: "auto", objectFit: "cover"}} />
                                     <div className="w-4/12 text-sm truncate">{i.postText}</div>
                                     <div className="w-4/12 flex items-center justify-end gap-4">
-                                        <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 bg-yellow-500 px-2 py-0.5 text-sm rounded-md">EDIT
-                                            <i className="bg-yellow-600 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                        <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                         </Link>
                                         <i onClick={() => deletePost(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
                                     </div>

@@ -70,8 +70,8 @@ const Add = () => {
 
             <div className="w-full">
                 <div className="mx-auto mt-32 md:mt-6 px-10 flex items-center justify-start">
-                    <h1 className="text-4xl font-semibold uppercase">{!type && "ADD COURSE"}{type === "studentsedit" ? "STUDENTS" : ''}</h1>
-                    <p className="ml-4 text-lg font-semibold">-{postOrPut ? "POST" : "PUT"}-</p>
+                    <h1 className="text-4xl font-semibold uppercase">{!type && "KURSLAR"}{type === "studentsedit" ? "STUDENTS" : ''}</h1>
+                    <p className="ml-4 text-lg font-semibold">-{postOrPut ? "qo'shish" : "o'zgartirish"}-</p>
                 </div>
                 <div className="flex flex-col items-center gap-2">
                     <form onSubmit={handleSubmit(onSubmitCourses)} className="flex w-6/12 my-10 justify-center py-10 px-8 items-start bg-gray-800 rounded-xl items-start">
