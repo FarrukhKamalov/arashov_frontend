@@ -13,6 +13,8 @@ function App() {
   const [loginOrRegister, setLoginOrRegister] = useState('')
   const [status, setStatus] = useState('')
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     if (type == "register") {
       setLoginOrRegister(true)
@@ -24,7 +26,15 @@ function App() {
 
   const onRegister = async (data) => {
     if (data.email && data.phone && data.password) {
-        router.push(`/profile/verification?email=${data.email}&phone=${data.phone}&a=${data.password}`)        
+        setLoading(true)
+        const obj = {
+            email: data.email,
+            phone: data.phone,
+            password: data.password
+        }
+        await axios.post("https://arashovplatform.onrender.com/api/v1/auth/register", obj)
+        router.push(`/profile/verification?email=${data.email}&a=${data.password}`)     
+        setLoading(false)
     } else {
         alert("Avval To'ldiring!!!")
     }
@@ -32,6 +42,7 @@ function App() {
 
     const onLogin = async (data) => {
         if (data.email.length && data.password.length) {
+            setLoading(true)
             const obj = {
                 email: data.email,
                 password: data.password
@@ -39,14 +50,16 @@ function App() {
         
             axios.post("https://arashovplatform.onrender.com/api/v1/auth/login", obj).then(res => {
                 if (res.data.token) {
+                    setLoading(false)
                     localStorage.setItem('token', res.data.token)
-                        router.push("/profile/me")
-                    } else {
-                        setStatus("Xatolik, bunday foydalanuvchi mavjud emas")
-                        setTimeout(() => {
-                            setStatus("")
-                        }, 5000)
-                    }
+                    router.push("/profile/me")
+                } else {
+                    setLoading(false)
+                    setStatus("Xatolik, bunday foydalanuvchi mavjud emas")
+                    setTimeout(() => {
+                        setStatus("")
+                    }, 5000)
+                }
                 }
             )
         }
@@ -62,6 +75,16 @@ function App() {
         <title>Arashov - {loginOrRegister ? "Ro'yhatdan o'ting" : "Tizimga kiring"}</title>
       </Head>
       <div className="flex-1 boxshadowed2 max-w-2xl h-[520px] py-4 px-10 sm:px-32 relative pb-32 shadow-xl border-4 border-[#002C72] rounded-2xl">
+        <div className="flex flex-col items-start">
+            {
+                loading && 
+                <div className="absolute w-full h-full right-0 top-0 z-20">
+                    <div className="h-96 flex justify-center items-center">
+                        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </div>
+                </div>
+            }
+        </div>
         <div className="flex flex-col items-start mt-10 gap-1 mb-6">
           <p className="uppercase text-gray-200 text-basic sm:text-2xl mezzardBold text-center">Kurslardan birini xarid qilish uchun {loginOrRegister ? "Ro'yhatdan o'ting" : "Tizimga kiring"}</p>
         </div>
@@ -73,7 +96,7 @@ function App() {
               <div className="flex flex-col items-center gap-3">
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-user text-xl"></i>
-                  <input autoComplete="off" className={inputDesign} type="email" {...register("name")} name="text" placeholder="Ism Familiya" />
+                  <input autoComplete="off" className={inputDesign} type="text" {...register("name")} name="text" placeholder="Ism Familiya" />
                 </div>
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-envelope text-xl"></i>
