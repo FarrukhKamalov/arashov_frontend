@@ -70,6 +70,7 @@ const Dashboard = () => {
                             tab == "students" &&
                             <>                    
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-4/12 truncate">Ism Familiya</div>
                                     <div className="text-sm font-bold w-4/12 truncate">Email</div>
                                     <div className="text-sm font-bold w-4/12 truncate">Telefon raqam</div>
                                     <div className="text-sm font-bold w-4/12 truncate">To'lov</div>
@@ -77,6 +78,7 @@ const Dashboard = () => {
                                     <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
                                 </div>        
                                 {students.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                    <div className="text-sm w-4/12 truncate">{i.fullName}</div>
                                     <div className="text-sm w-4/12 truncate">{i.email}</div>
                                     <div className="text-sm w-4/12 truncate">{i.phone}</div>
                                     <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
