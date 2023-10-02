@@ -29,7 +29,8 @@ function App() {
         setLoading(true)
         const obj = {
             email: data.email,
-            password: data.password
+            password: data.password,
+            fullName: data.fullName
         }
         await axios.post("https://arashovplatform.onrender.com/api/v1/auth/register", obj)
         router.push(`/profile/verification?email=${data.email}&a=${data.password}`)     
@@ -95,7 +96,7 @@ function App() {
               <div className="flex flex-col items-center gap-3 mt-3">
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-user text-xl"></i>
-                  <input autoComplete="off" className={inputDesign} type="text" {...register("name")} name="text" placeholder="Ism Familiya" />
+                  <input autoComplete="off" className={inputDesign} type="text" {...register("fullName")} name="fullName" placeholder="Ism Familiya" />
                 </div>
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-envelope text-xl"></i>
