@@ -25,11 +25,10 @@ function App() {
   }, [router])
 
   const onRegister = async (data) => {
-    if (data.email && data.phone && data.password) {
+    if (data.email && data.password) {
         setLoading(true)
         const obj = {
             email: data.email,
-            phone: data.phone,
             password: data.password
         }
         await axios.post("https://arashovplatform.onrender.com/api/v1/auth/register", obj)
@@ -102,10 +101,10 @@ function App() {
                   <i className="fa-solid fa-envelope text-xl"></i>
                   <input autoComplete="off" className={inputDesign} type="email" {...register("email")} name="email" placeholder="Email" />
                 </div>
-                <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
+                {/* <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-phone"></i>
                   <input autoComplete="off" className={inputDesign} type="tel" {...register("phone")} name="phone" placeholder="Telefon raqam" />
-                </div>
+                </div> */}
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-key"></i>
                   <input autoComplete="off" className={inputDesign} type="password" {...register("password")} name="password" placeholder="Parol" />
