@@ -57,7 +57,8 @@ const Me = () => {
                     <Image src={logo} alt="Logo" className="w-40" />
                 </Link>  
                 <div onClick={() => setDropdownProfile(prev => !prev)} className="relative drowdown-item">
-                    <div className="mezzardBold drowdown-item">
+                    <div className="mezzardBold drowdown-item flex items-center gap-6">
+                        <p className="font-bold">{dataUser.fullName}</p>
                         <Image src={dataUser.image} width={40} height={30} className="drowdown-item w-12 h-auto cursor-pointer rounded-full hover:scale-110 transition-all" />
                     </div>
                     {

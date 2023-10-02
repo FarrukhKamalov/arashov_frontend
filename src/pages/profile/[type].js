@@ -92,7 +92,7 @@ function App() {
         <>
           <form className="flex flex-col items-center" onSubmit={handleSubmit(onRegister)}>
             <div className="w-full">
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-center gap-3 mt-3">
                 <div className="bg-[#000C2C] w-full flex pl-5 justify-start items-center border-[3px] rounded-xl border-[#0152D1]">
                   <i className="fa-solid fa-user text-xl"></i>
                   <input autoComplete="off" className={inputDesign} type="text" {...register("name")} name="text" placeholder="Ism Familiya" />

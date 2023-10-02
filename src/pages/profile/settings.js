@@ -2,6 +2,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Head from "next/head"
 
 const Settings = () => {
 
@@ -20,6 +21,7 @@ const Settings = () => {
             setName(res.data.data.fullName)
             setPhone(res.data.data.phone)
             setEmail(res.data.data.email)
+            console.log(res.data);
         })
     }, [])
 
@@ -41,6 +43,9 @@ const Settings = () => {
 
     return (
         <div className="bg-[#151825]">
+            <Head>
+                <title>Sozlamalar</title>
+            </Head>
             <div className="max-w-screen-xl mx-auto min-h-screen py-2 px-2">
                 <Link href={"/profile/me"} className="my-6 block w-fit rounded-lg btn px-8 hover:bg-blue-800 py-2">Ortga</Link>
                 <h1 className="text-3xl font-[900]">Sozlamalar</h1>
