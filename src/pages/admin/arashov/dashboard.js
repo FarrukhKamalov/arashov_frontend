@@ -68,47 +68,70 @@ const Dashboard = () => {
                     <div className="w-full flex flex-col max-h-full overflow-y-auto">                        
                         {
                             tab == "students" &&
-                            students.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                <div className="text-sm w-4/12 truncate">{i.email}</div>
-                                <div className="text-sm w-4/12 truncate">{i.phone}</div>
-                                <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
-                                <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
-                                <div className="w-4/12 flex items-center justify-end gap-4">
-                                    <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
-                                        <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
-                                    </Link>
-                                    <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                            <>                    
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-4/12 truncate">Email</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Telefon raqam</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">To'lov</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">To'lov turi</div>
+                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                </div>        
+                                {students.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                    <div className="text-sm w-4/12 truncate">{i.email}</div>
+                                    <div className="text-sm w-4/12 truncate">{i.phone}</div>
+                                    <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
+                                    <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
+                                    <div className="w-4/12 flex items-center justify-end gap-4">
+                                        <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                        </Link>
+                                        <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            )
+                                )}
+                            </>
                         }
                         {   tab == "courses" &&
-                            courses.map((i) => 
-                                <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                    <div className="w-4/12 text-sm truncate">{i.videoTitle}</div>
-                                    <div className="w-4/12 text-sm truncate">{i.videoLink}</div>
-                                    <div className="w-4/12 flex items-center justify-end gap-4">
-                                        <Link href={`./add/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
-                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
-                                        </Link>
-                                        <i onClick={() => deleteing(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                            <>
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-4/12 truncate">Nomi</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Linki</div>
+                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                </div>  
+                                {courses.map((i) => 
+                                    <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                        <div className="w-4/12 font-bold text-sm truncate">{i.videoTitle}</div>
+                                        <div className="w-4/12 font-bold text-sm truncate">{i.videoLink}</div>
+                                        <div className="w-4/12 font-bold flex items-center justify-end gap-4">
+                                            <Link href={`./add/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                                <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                            </Link>
+                                            <i onClick={() => deleteing(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                        </div>
                                     </div>
-                                </div>
-                            )
+                                )}
+                            </>
                         }
                         {   tab == "posts" &&
-                            posts.map((i) => 
-                                <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                    <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "120px", height: "auto", objectFit: "cover"}} />
-                                    <div className="w-4/12 text-sm truncate">{i.postText}</div>
-                                    <div className="w-4/12 flex items-center justify-end gap-4">
-                                        <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
-                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
-                                        </Link>
-                                        <i onClick={() => deletePost(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                            <>
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-[120px] truncate">Rasm</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Yozuv</div>
+                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                </div> 
+                                {posts.map((i) => 
+                                    <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                        <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "120px", height: "auto", objectFit: "cover"}} />
+                                        <div className="w-4/12 text-sm truncate">{i.postText}</div>
+                                        <div className="w-4/12 flex items-center justify-end gap-4">
+                                            <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                                <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                            </Link>
+                                            <i onClick={() => deletePost(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                        </div>
                                     </div>
-                                </div>
-                            )
+                                )}
+                            </>
                         }
                     </div>
                 </div>
