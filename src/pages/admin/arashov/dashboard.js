@@ -20,7 +20,7 @@ const Dashboard = () => {
         axios.get("https://arashovplatform.onrender.com/api/v1/posts/").then(res => setPosts(res.data.data))
         axios.get("https://arashovplatform.onrender.com/api/v1/requests/").then(res => setRequests(res.data.data))
         if (localStorage.getItem("login") != 'true') {
-            window.location.href = "/"
+            window.location.href = "/admin/arashov/login"
         }
     }, [])
 
