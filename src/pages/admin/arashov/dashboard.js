@@ -12,11 +12,16 @@ const Dashboard = () => {
     const [students, setStudents] = useState([])
     const [courses, setCourses] = useState([])
     const [posts, setPosts] = useState([])
+    const [requests, setRequests] = useState([])
 
     useEffect(() => {
-      axios.get("https://arashovplatform.onrender.com/api/v1/admin/courses/").then(res => setCourses(res.data.data))
-      axios.get("https://arashovplatform.onrender.com/api/v1/admin/students/").then(res => setStudents(res.data.data))
-      axios.get("https://arashovplatform.onrender.com/api/v1/posts/").then(res => setPosts(res.data.data))
+        axios.get("https://arashovplatform.onrender.com/api/v1/admin/courses/").then(res => setCourses(res.data.data))
+        axios.get("https://arashovplatform.onrender.com/api/v1/admin/students/").then(res => setStudents(res.data.data))
+        axios.get("https://arashovplatform.onrender.com/api/v1/posts/").then(res => setPosts(res.data.data))
+        axios.get("https://arashovplatform.onrender.com/api/v1/requests/").then(res => setRequests(res.data.data))
+        if (localStorage.getItem("login") != 'true') {
+            window.location.href = "/"
+        }
     }, [])
 
     const deleteing = (id) => {
@@ -48,6 +53,7 @@ const Dashboard = () => {
                 </Link>
                 <div className="mt-6 flex flex-col items-start gap-2 w-full">
                     <p onClick={() => setTabs("students")} className={ `${ tab == "students" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> O'quvchilar</p>
+                    <p onClick={() => setTabs("requests")} className={ `${ tab == "requests" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> So'rovlar</p>
                     <p onClick={() => setTabs("courses")} className={ `${ tab == "courses" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-film"></i> Kurslar</p>
                     <p onClick={() => setTabs("posts")} className={ `${ tab == "posts" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-list"></i> Postlar</p>
                     
@@ -61,6 +67,7 @@ const Dashboard = () => {
             <div className="px-4 py-6 min-h-full w-full bg-[#151A20] max-h-screen overflow-y-auto">
                 <div className="py-4 flex items-center">
                     <p className="text-3xl relative my-1 font-semibold">{tab == "students" && "O'QUVCHILAR"}</p>
+                    <p className="text-3xl relative my-1 font-semibold">{tab == "requests" && "SO'ROVLAR"}</p>
                     <p className="text-3xl relative my-1 font-semibold">{tab == "posts" && "POSTLAR"}</p>
                     <p className="text-3xl relative my-1 font-semibold">{tab == "courses" && "KURSLAR"}</p>
                 </div>
@@ -83,6 +90,29 @@ const Dashboard = () => {
                                     <div className="text-sm w-4/12 truncate">{i.phone}</div>
                                     <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
                                     <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
+                                    <div className="w-4/12 flex items-center justify-end gap-4">
+                                        <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                            <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                        </Link>
+                                        <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                    </div>
+                                </div>
+                                )}
+                            </>
+                        }
+                        {
+                            tab == "requests" &&
+                            <>                    
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-4/12 truncate">To'lov turi</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Ism</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Telefon raqam</div>
+                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                </div>        
+                                {requests.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                    <div className="text-sm w-4/12 truncate">{i.paymentType}</div>
+                                    <div className="text-sm w-4/12 truncate">{i.name}</div>
+                                    <div className="text-sm w-4/12 truncate">{i.telephone}</div>
                                     <div className="w-4/12 flex items-center justify-end gap-4">
                                         <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                             <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
