@@ -146,15 +146,17 @@ const Dashboard = () => {
                         }
                         {   tab == "posts" &&
                             <>
-                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-[120px] truncate">Rasm</div>
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-[140px] truncate">Rasm</div>
                                     <div className="text-sm font-bold w-4/12 truncate">Yozuv</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Likelar</div>
                                     <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
                                 </div> 
                                 {posts.map((i) => 
-                                    <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                        <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "120px", height: "auto", objectFit: "cover"}} />
+                                    <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                        <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "140px", height: "auto", objectFit: "cover"}} />
                                         <div className="w-4/12 text-sm truncate">{i.postText}</div>
+                                        <div className="w-4/12 text-sm truncate">{i.likes?.length}</div>
                                         <div className="w-4/12 flex items-center justify-end gap-4">
                                             <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>

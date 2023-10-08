@@ -9,6 +9,8 @@ const Login = () => {
         if (login == "adminarashov@gmail.com" && password == "adminparol123") {
             localStorage.setItem("login", "true")
             window.location.href = "/admin/arashov/dashboard"
+        } else {
+            window.location.reload()
         }
     }
 
