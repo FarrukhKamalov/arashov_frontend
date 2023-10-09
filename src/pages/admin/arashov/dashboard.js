@@ -42,6 +42,12 @@ const Dashboard = () => {
         })
     }
 
+    const deleteReq = (id) => {
+        axios.delete(`https://arashovplatform.onrender.com/api/v1/requests/${id}`).then(() => {
+            axios.get("https://arashovplatform.onrender.com/api/v1/requests/").then(res => setRequests(res.data.data))
+        })
+    }
+
     return (  
         <div className="mx-auto absolute top-0 right-0 z-50 w-full h-full flex flex-col md:flex-row items-center md:items-start justify-start h-screen md:max-h-screen">
         <Head>
@@ -117,7 +123,7 @@ const Dashboard = () => {
                                         <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                             <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                         </Link>
-                                        <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                        <i onClick={() => deleteReq(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
                                     </div>
                                 </div>
                                 )}
