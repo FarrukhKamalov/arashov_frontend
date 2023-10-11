@@ -17,6 +17,10 @@
   src: url("../assets/MazzardH-Regular/MazzardH-Bold.otf");
 }
 
+* {
+    outline: none;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

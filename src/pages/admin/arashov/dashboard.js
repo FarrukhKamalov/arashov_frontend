@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import axios from "axios";
 import Head from "next/head"
+import Modal from "./modal";
 
 const Dashboard = () => {
 
@@ -13,12 +14,14 @@ const Dashboard = () => {
     const [courses, setCourses] = useState([])
     const [posts, setPosts] = useState([])
     const [requests, setRequests] = useState([])
+    const [withdraw, setWithdraw] = useState([])
 
     useEffect(() => {
         axios.get("https://arashovplatform.onrender.com/api/v1/admin/courses/").then(res => setCourses(res.data.data))
         axios.get("https://arashovplatform.onrender.com/api/v1/admin/students/").then(res => setStudents(res.data.data))
         axios.get("https://arashovplatform.onrender.com/api/v1/posts/").then(res => setPosts(res.data.data))
         axios.get("https://arashovplatform.onrender.com/api/v1/requests/").then(res => setRequests(res.data.data))
+        axios.get("https://arashovplatform.onrender.com/api/v1/withdraw/").then(res => setWithdraw(res.data.data))
         if (localStorage.getItem("login") != 'true') {
             window.location.href = "/admin/arashov/login"
         }
@@ -59,9 +62,10 @@ const Dashboard = () => {
                 </Link>
                 <div className="mt-6 flex flex-col items-start gap-2 w-full">
                     <p onClick={() => setTabs("students")} className={ `${ tab == "students" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> O'quvchilar</p>
-                    <p onClick={() => setTabs("requests")} className={ `${ tab == "requests" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars-progress"></i> So'rovlar</p>
+                    <p onClick={() => setTabs("requests")} className={ `${ tab == "requests" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-bars"></i> So'rovlar</p>
                     <p onClick={() => setTabs("courses")} className={ `${ tab == "courses" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-film"></i> Kurslar</p>
                     <p onClick={() => setTabs("posts")} className={ `${ tab == "posts" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-list"></i> Postlar</p>
+                    <p onClick={() => setTabs("money")} className={ `${ tab == "money" ? "bg-gray-700 ring-2" : "bg-gray-600" } flex items-center uppercase justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-money-bill"></i> Pul chiqarish</p>
                     
                     <div className="mt-2 w-full flex flex-col gap-2">
                         <Link href={`./add`} className={ `bg-gray-600 flex items-center justify-start gap-4 font-semibold pl-5 hover:ring-2 ring-gray-600 hover:bg-gray-800 cursor-pointer w-full rounded-sm py-2`}><i className="fa-solid fa-add"></i>Kurs qo'shish</Link>
@@ -97,11 +101,13 @@ const Dashboard = () => {
                                     <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
                                     <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
                                     <div className="w-4/12 flex items-center justify-end gap-4">
+                                        <i onClick={()=>document.getElementById(i._id).showModal()} className="bg-blue-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-eye"></i>
                                         <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                             <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                         </Link>
                                         <i onClick={() => deleteingStudent(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
                                     </div>
+                                    <Modal i={i}/>
                                 </div>
                                 )}
                             </>
@@ -163,6 +169,31 @@ const Dashboard = () => {
                                         <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "140px", height: "auto", objectFit: "cover"}} />
                                         <div className="w-4/12 text-sm truncate">{i.postText}</div>
                                         <div className="w-4/12 text-sm truncate">{i.likes?.length}</div>
+                                        <div className="w-4/12 flex items-center justify-end gap-4">
+                                            <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                                <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
+                                            </Link>
+                                            <i onClick={() => deletePost(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>
+                                        </div>
+                                    </div>
+                                )}
+                            </>
+                        }
+                        {   tab == "money" &&
+                            <>
+                                <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-700 px-6 py-4 hover:bg-gray-700">
+                                    <div className="text-sm font-bold w-[140px] truncate">Rasm</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Yozuv</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Likelar</div>
+                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                </div> 
+                                {withdraw.map((i) => 
+                                    <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                        <div className="w-4/12 text-sm truncate">{i.name}</div>
+                                        <div className="w-4/12 text-sm truncate">{i.telephone}</div>
+                                        <div className="w-4/12 text-sm truncate">{i.summa}</div>
+                                        <div className="w-4/12 text-sm truncate">{i.withdrawType}</div>
+                                        <div className="w-4/12 text-sm truncate">{i.cardNumber}</div>
                                         <div className="w-4/12 flex items-center justify-end gap-4">
                                             <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
