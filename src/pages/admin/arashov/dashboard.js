@@ -195,7 +195,7 @@ const Dashboard = () => {
                                         <div className="w-4/12 text-sm truncate">{i.withdrawType}</div>
                                         <div className="w-4/12 text-sm truncate">{i.cardNumber}</div>
                                         <div className="w-4/12 flex items-center justify-end gap-4">
-                                            <Link href={`./addpost/?id=${i.email}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
+                                            <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                             </Link>
                                             <i onClick={() => deletePost(i._id)} className="bg-rose-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-remove"></i>

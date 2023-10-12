@@ -1,6 +1,6 @@
 const Modal = ({i}) => {
     return (
-        <dialog id={i?.email} className="modal">
+        <dialog id={i?._id} className="modal">
             <div className="modal-box">
                 <div className="flex items-center gap-2">
                     <img src={i?.image} alt="photo" width={200} height={200} style={{width: "100px", height: "auto"}} />
