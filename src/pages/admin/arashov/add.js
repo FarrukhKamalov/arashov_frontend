@@ -24,7 +24,7 @@ const Add = () => {
     const onSubmitCourses = async (data) => {
         const obj = {
             videoTitle: inputs.videoTitle,
-            videoLink: inputs.videoLink
+            videoLink: inputs.videoLink,
         }
 
         if (id) {
@@ -105,6 +105,10 @@ const Add = () => {
                                             <option value="Crypto">Crypto</option>
                                             <option value="Menejer">Menejer</option>
                                         </select>
+                                    </div>
+                                    <div className="w-full my-3 gap-6 py-3 rounded-2xl">
+                                        <h1 className="text-xl">Referral Code</h1>
+                                        <input onInput={e => setPayment({...payment, referralCode: e.target.value})} value={payment.referralCode}  {...register("referralCode")} required className="outline-0 border-0 bg-gray-700 text-gray-200 rounded-md px-5 py-2 w-full focus:ring-2 ring-gray-600" type="text" placeholder="Referral Code..." name="referralCode" id="" />
                                     </div>
                                 </div>
                             }
