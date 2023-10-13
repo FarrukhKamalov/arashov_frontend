@@ -188,9 +188,11 @@ const Dashboard = () => {
                         {   tab == "money" &&
                             <>
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-[140px] truncate">Rasm</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Yozuv</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Likelar</div>
+                                    <div className="text-sm font-bold w-[140px] truncate">Ism</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Telefon</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Summa</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Turi</div>
+                                    <div className="text-sm font-bold w-4/12 truncate">Karta nomer</div>
                                     <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
                                 </div> 
                                 {withdraw.map((i) => 
