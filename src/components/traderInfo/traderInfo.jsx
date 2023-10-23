@@ -11,15 +11,15 @@ const TraderInfo = () => {
 
                          <div className="boxText">
                               <p className="mezzardBold">Trader:</p>
-                              <div className="card">
+                              <div className="boxText-card">
                                    <div className="line"></div>
                                    <p className="mezzardBold">Moliyaviy bozorni tahlil qiladi</p>
                               </div>
-                              <div className="card">
+                              <div className="boxText-card">
                                    <div className="line"></div>
                                    <p className="mezzardBold">Aktivlarni sotib oladi va sotadi</p>
                               </div>
-                              <div className="card">
+                              <div className="boxText-card">
                                    <div className="line"></div>
                                    <p className="mezzardBold">Narxlar farqidan daromad oladi</p>
                               </div>

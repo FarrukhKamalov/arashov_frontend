@@ -38,7 +38,34 @@ function Index() {
                 <TraderInfo />
                 <Competition />
                 <Price />
-                <Contact />
+                <div className="pt-20">
+                    <div>
+                        <p className="mezzardBold boxTitle competition__title">TRADINGNI MUKAMMAL O’RGANMOQCHI BO’SANGIZ</p>
+                        <p className="mezzardBold boxTitle text-center">MA’LUMOTLARINGIZNI TO’LDIRING</p>
+                    </div>
+                    <div className="flex justify-center mt-[50px]">
+                        <div className="bg-[#031026] border-[#3A7EFF] border-2 p-[40px] rounded-[35px]">
+                            <div className="bg-[#FFFFFF] w-full flex pl-2 justify-start items-center border-[1px] rounded-lg border-[#0152D1]">
+                                <i className="fa-solid fa-user bg-black text-white rounded-md px-[8px] py-[8px]"></i>
+                                <input autoComplete="off" className={"px-3 w-[320px] py-2 bg-[#FFFFFF] text-gray-900 mezzardBold form-input outline-0 rounded-r-xl"} type="text" name="fullName" placeholder="Ism Familiya" />
+                            </div>
+                            <div className="bg-[#FFFFFF] mt-[10px] w-full flex pl-2 justify-start items-center border-[1px] rounded-lg border-[#0152D1]">
+                                <i className="fa-solid fa-user bg-black text-white rounded-md px-[8px] py-[8px]"></i>
+                                <input autoComplete="off" className={"px-3 w-[320px] py-2 bg-[#FFFFFF] text-gray-900 mezzardBold form-input outline-0 rounded-r-xl"} type="text" name="fullName" placeholder="Ism Familiya" />
+                            </div>
+                            <div className="bg-[#FFFFFF] mt-[10px] w-full flex pl-2 justify-start items-center border-[1px] rounded-lg border-[#0152D1]">
+                                <i className="fa-solid fa-user bg-black text-white rounded-md px-[8px] py-[8px]"></i>
+                                <input autoComplete="off" className={"px-3 w-[320px] py-2 bg-[#FFFFFF] text-gray-900 mezzardBold form-input outline-0 rounded-r-xl"} type="text" name="fullName" placeholder="Ism Familiya" />
+                            </div>
+                            <div className="tasdiqlash_btn cursor-pointer hover:scale-105 transition-all">
+                                <p className="mezzardBold">TASDIQLASH</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="pt-[75px]">
+                    <Contact />
+                </div>
                 <Footer />
             </main>
         </Layout>

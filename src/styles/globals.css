@@ -117,7 +117,7 @@ body{
   .competition__title{
   text-align: center;
   font-size: 2.5rem;
-  width: 500px;
+  /* width: 500px; */
   margin: auto;
   font-weight: 600;
   background: -webkit-linear-gradient(45deg,#81d7f6, #0028b9);
@@ -125,6 +125,11 @@ body{
   -webkit-text-fill-color: transparent;
   
   }
+
+.form-input::placeholder {
+    color: black;
+}
+
   .competition-container {
        height: 80vh;
        width: 100%;
@@ -279,6 +284,11 @@ body{
  .telegram-contact p{
       font-size: 2rem;
  }
+.boxText-card {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
  .phone-number{
       font-size: 1.5rem;
       margin-top: 15px;
@@ -850,6 +860,19 @@ input {
   font-weight: 600;
   overflow: hidden;
 }
+.tasdiqlash_btn{
+    width: 100%;
+    background-image: linear-gradient(to right, #003dff, #00a6ff);
+    border-radius: 12px;
+    box-shadow: inset -4px  5px  4px #1679ea;
+    font-size: 1.3rem;
+    color: #ffff;
+    padding: 10px 0;
+    overflow: hidden;
+    padding: 5px 25px;
+    margin-top: 12px;
+    text-align: center;
+  }
 @media screen and (min-width: 880px) {
   .swiper {
     width: fit-content !important;
