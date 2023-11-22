@@ -93,20 +93,20 @@ const Dashboard = () => {
                             tab == "students" &&
                             <>                    
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-4/12 truncate">Ism Familiya</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Email</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Telefon raqam</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">To'lov</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">To'lov turi</div>
-                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Ism Familiya</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Email</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Telefon raqam</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">To'lov</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">To'lov turi</div>
+                                    <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div>        
                                 {students.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                    <div className="text-sm w-4/12 truncate">{i.fullName}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.email}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.phone}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.payment ? "True" : "False"}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.payment && i.paymentType}</div>
-                                    <div className="w-4/12 flex items-center justify-end gap-4">
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.fullName}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.email}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.phone}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.payment ? "True" : "False"}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.payment && i.paymentType}</div>
+                                    <div className="lg:w-4/12 flex items-center justify-end gap-4">
                                         <i onClick={()=>document.getElementById(i._id).showModal()} className="bg-blue-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-eye"></i>
                                         <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                             <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
@@ -122,16 +122,16 @@ const Dashboard = () => {
                             tab == "requests" &&
                             <>                    
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-4/12 truncate">To'lov turi</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Ism</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Telefon raqam</div>
-                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">To'lov turi</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Ism</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Telefon raqam</div>
+                                    <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div>        
                                 {requests.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                    <div className="text-sm w-4/12 truncate">{i.paymentType}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.name}</div>
-                                    <div className="text-sm w-4/12 truncate">{i.telephone}</div>
-                                    <div className="w-4/12 flex items-center justify-end gap-4">
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.paymentType}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.name}</div>
+                                    <div className="text-sm w-full lg:w-4/12 truncate">{i.telephone}</div>
+                                    <div className="lg:w-4/12 flex items-center justify-end gap-4">
                                         <Link href={`./add/?id=${i._id}&type=studentsedit`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                             <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                         </Link>
@@ -144,15 +144,15 @@ const Dashboard = () => {
                         {   tab == "courses" &&
                             <>
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-4/12 truncate">Nomi</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Linki</div>
-                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Nomi</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Linki</div>
+                                    <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div>  
                                 {courses.map((i) => 
                                     <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                        <div className="w-4/12 font-bold text-sm truncate">{i.videoTitle}</div>
-                                        <div className="w-4/12 font-bold text-sm truncate">{i.videoLink}</div>
-                                        <div className="w-4/12 font-bold flex items-center justify-end gap-4">
+                                        <div className="w-full lg:w-4/12 font-bold text-sm truncate">{i.videoTitle}</div>
+                                        <div className="w-full lg:w-4/12 font-bold text-sm truncate">{i.videoLink}</div>
+                                        <div className="lg:w-4/12 flex items-center justify-end gap-4">
                                             <Link href={`./add/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                             </Link>
@@ -165,17 +165,17 @@ const Dashboard = () => {
                         {   tab == "posts" &&
                             <>
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-[140px] truncate">Rasm</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Yozuv</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Likelar</div>
-                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                    <div className="text-sm font-bold w-full lg:w-[140px] truncate">Rasm</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Yozuv</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Likelar</div>
+                                    <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div> 
                                 {posts.map((i) => 
                                     <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-800 px-6 py-2 hover:bg-gray-700">
                                         <Image src={i.postImage} alt={"img"} width={200} height={60} style={{width: "140px", height: "auto", objectFit: "cover"}} />
-                                        <div className="w-4/12 text-sm truncate">{i.postText}</div>
-                                        <div className="w-4/12 text-sm truncate">{i.likes?.length}</div>
-                                        <div className="w-4/12 flex items-center justify-end gap-4">
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.postText}</div>
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.likes?.length}</div>
+                                        <div className="lg:w-4/12 flex items-center justify-end gap-4">
                                             <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                             </Link>
@@ -188,21 +188,21 @@ const Dashboard = () => {
                         {   tab == "money" &&
                             <>
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-700 px-6 py-4 hover:bg-gray-700">
-                                    <div className="text-sm font-bold w-4/12 truncate">Ism</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Telefon</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Summa</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Turi</div>
-                                    <div className="text-sm font-bold w-4/12 truncate">Karta nomer</div>
-                                    <div className="text-sm font-bold w-4/12 text-end truncate">Bajarish</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Ism</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Telefon</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Summa</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Turi</div>
+                                    <div className="text-sm font-bold w-full lg:w-4/12 truncate">Karta nomer</div>
+                                    <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div> 
                                 {withdraw.map((i) => 
                                     <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-5 bg-gray-800 px-6 py-2 hover:bg-gray-700">
-                                        <div className="w-4/12 text-sm truncate">{i.name}</div>
-                                        <div className="w-4/12 text-sm truncate">{i.telephone}</div>
-                                        <div className="w-4/12 text-sm truncate">{i.summa}</div>
-                                        <div className="w-4/12 text-sm truncate">{i.withdrawType}</div>
-                                        <div className="w-4/12 text-sm truncate">{i.cardNumber}</div>
-                                        <div className="w-4/12 flex items-center justify-end gap-4">
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.name}</div>
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.telephone}</div>
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.summa}</div>
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.withdrawType}</div>
+                                        <div className="w-full lg:w-4/12 text-sm truncate">{i.cardNumber}</div>
+                                        <div className="lg:w-4/12 flex items-center justify-end gap-4">
                                             <Link href={`./addpost/?id=${i._id}`} className="cursor-pointer flex items-center justify-center gap-1 px-2 py-0.5 text-sm rounded-md">
                                                 <i className="bg-yellow-500 w-8 flex items-center justify-center rounded-md h-8 cursor-pointer hover:scale-105 fa-solid fa-edit"></i>
                                             </Link>
