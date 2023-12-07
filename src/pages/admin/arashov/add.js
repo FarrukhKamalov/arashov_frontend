@@ -36,7 +36,7 @@ const Add = () => {
                 })
             }
         } else {
-            axios.post("https://arashovplatform.onrender.com/api/v1/admin/courses/add", obj).then(router.push("/admin/arashov/dashboard"))
+            axios.post("https://arashovplatform.onrender.com/api/v1/courses/add", obj).then(router.push("/admin/arashov/dashboard"))
         }
     };
 
