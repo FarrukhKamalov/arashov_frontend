@@ -8,7 +8,8 @@ import Modal from "./modal";
 
 const Dashboard = () => {
 
-    const [ tab, setTabs ] = useState("students")
+    const [ tab, setTabs ] = useState("students");
+    const [searchTerm, setSearchTerm] = useState('');
 
     const [students, setStudents] = useState([])
     const [courses, setCourses] = useState([])
@@ -57,6 +58,16 @@ const Dashboard = () => {
         })
     }
 
+    const handleSearch = (event) => {
+		setSearchTerm(event.target.value);
+	};
+
+    const filteredUsers = students.filter((user) =>
+		user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+
+    const premiumUsersCount = students.filter((student) => student.payment === true).length;
+
     return (  
         <div className="mx-auto absolute top-0 right-0 z-50 w-full h-full flex flex-col md:flex-row items-center md:items-start justify-start h-screen md:max-h-screen">
         <Head>
@@ -88,10 +99,24 @@ const Dashboard = () => {
                     <p className="text-3xl relative my-1 font-semibold">{tab == "courses" && "KURSLAR"}</p>
                 </div>
                 <div className="flex flex-col items-start">
+                    <div className="w-full flex justify-between items-center mb-5 max-[500px]:items-start max-[500px]:gap-3 max-[500px]:flex-col">
+                        <div className="flex-1">
+                            <input className="text-sm p-2"
+                                type="text"
+                                placeholder="Foydalanuvchini qidirish"
+                                value={searchTerm}
+                                onChange={handleSearch}
+                            />
+                        </div>
+                        <div className="flex">
+                            <div className="text-sm">Total users: <span className="font-semibold">{students.length}</span></div>
+                            <div className="text-sm ml-4">Premium users: <span className="font-semibold">{premiumUsersCount}</span></div>
+                        </div>
+                    </div>
                     <div className="w-full flex flex-col max-h-full overflow-y-auto">                        
                         {
                             tab == "students" &&
-                            <>                    
+                            <>     
                                 <div className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-700 px-6 py-4 hover:bg-gray-700">
                                     <div className="text-sm font-bold w-full lg:w-4/12 truncate">Ism Familiya</div>
                                     <div className="text-sm font-bold w-full lg:w-4/12 truncate">Email</div>
@@ -100,7 +125,7 @@ const Dashboard = () => {
                                     <div className="text-sm font-bold w-full lg:w-4/12 truncate">To'lov turi</div>
                                     <div className="text-sm font-bold text-start w-full lg:w-4/12 lg:text-end truncate">Bajarish</div>
                                 </div>        
-                                {students.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
+                                {filteredUsers.map(i => <div key={i._id} className="flex flex-col md:flex-row justify-between items-center border border-gray-600 w-full gap-3 bg-gray-800 px-6 py-2 hover:bg-gray-700">
                                     <div className="text-sm w-full lg:w-4/12 truncate">{i.fullName}</div>
                                     <div className="text-sm w-full lg:w-4/12 truncate">{i.email}</div>
                                     <div className="text-sm w-full lg:w-4/12 truncate">{i.phone}</div>
